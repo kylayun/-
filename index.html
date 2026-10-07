@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>신랑이랑 함께하는 골프여행</title>
     <style>
-        /* 어두운 테마 (Dark Theme) 설정 */
+        /* 어두운 테마 (Dark Theme) 고급스럽게 설정 */
         :root {
             --bg-color: #121212;
             --card-bg: #1e1e1e;
             --text-color: #e0e0e0;
             --title-color: #bb86fc;
+            --accent-color: #03dac6;
             --border-color: #333333;
             --btn-bg: #bb86fc;
             --btn-text: #000000;
@@ -22,24 +23,31 @@
             color: var(--text-color);
             margin: 0;
             padding: 20px;
-            font-size: 18px; /* 글자를 크게 설정 */
-            line-height: 1.6;
+            font-size: 18px; /* 글자를 시원하게 크게 */
+            line-height: 1.7;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
         }
 
         h1 {
             color: var(--title-color);
-            font-size: 28px;
+            font-size: 32px;
             margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--accent-color);
+            font-weight: bold;
         }
 
         /* 검색창 디자인 */
@@ -49,12 +57,12 @@
 
         #searchInput {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             font-size: 18px;
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
             color: var(--text-color);
-            border-radius: 8px;
+            border-radius: 10px;
             box-sizing: border-box;
             outline: none;
         }
@@ -66,11 +74,11 @@
         /* 카드 레이아웃 (반응형) */
         .card-grid {
             display: grid;
-            gap: 20px;
+            gap: 25px;
             grid-template-columns: 1fr;
         }
 
-        @media (min-width: 600px) {
+        @media (min-width: 768px) {
             .card-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -82,19 +90,32 @@
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         .card h2 {
             margin-top: 0;
             color: var(--title-color);
-            font-size: 22px;
+            font-size: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
         }
 
-        .card p {
-            margin: 10px 0 20px 0;
+        /* 일정표 스타일 */
+        .schedule-day {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .schedule-day h3 {
+            margin: 0 0 10px 0;
+            color: var(--accent-color);
+            font-size: 20px;
         }
 
         /* 버튼 디자인 */
@@ -102,39 +123,84 @@
             background-color: var(--btn-bg);
             color: var(--btn-text);
             border: none;
-            padding: 12px 20px;
+            padding: 15px 20px;
             font-size: 18px;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             width: 100%;
             transition: opacity 0.2s;
+            margin-top: 15px;
         }
 
         .btn:hover {
             opacity: 0.8;
         }
 
+        /* 지도 버튼 전용 스타일 */
+        .map-btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .map-btn {
+            flex: 1;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .google-map {
+            background-color: #4285F4;
+            color: white;
+            border: none;
+        }
+
+        .naver-map {
+            background-color: #03C75A;
+            color: white;
+            border: none;
+        }
+
         /* 숨겨진 상세 내용 */
         .details {
             display: none;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
-        .details ul {
-            padding-left: 20px;
-            margin: 0;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .details li {
-            margin-bottom: 8px;
+        /* 체크리스트 스타일 */
+        .check-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
         }
 
-        /* 강조 팁 카드 */
-        .tip-card {
-            border-left: 5px solid var(--title-color);
+        .check-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #777;
         }
     </style>
 </head>
@@ -142,112 +208,29 @@
 
 <div class="container">
     <header>
-        <h1>🏌️‍♀️ 신랑이랑 함께 떠나는 골프여행</h1>
-        <p>비행기 5시간 이내로 가볍게 떠나는 라운딩</p>
+        <h1>🏌️‍♀️ 신랑이랑 오붓하게, 커플 골프여행</h1>
+        <p>비행기 5시간 이내! 태국 & 일본 완전 정복</p>
     </header>
 
     <!-- 1. 검색 기능 -->
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="🔍 궁금한 내용을 검색해보세요 (예: 태국, 일정)" onkeyup="filterCards()">
+        <input type="text" id="searchInput" placeholder="🔍 궁금한 내용을 검색해보세요 (예: 2박, 태국, 지도)" onkeyup="filterCards()">
     </div>
 
-    <!-- 카드 리스트 -->
+    <!-- 카드 리스트 시작 -->
     <div class="card-grid" id="cardContainer">
         
-        <!-- 카드 1: 태국 -->
+        <!-- 카드 1: 태국 매력 -->
         <div class="card">
-            <h2>🇹🇭 태국 골프 여행</h2>
-            <p>따뜻한 날씨와 훌륭한 골프장 컨디션!</p>
-            <!-- 2. 버튼 기능 -->
-            <button class="btn" onclick="toggleDetails(this)">자세히 보기 ⬇️</button>
-            <div class="details">
-                <ul>
-                    <li>저렴하고 맛있는 현지 음식</li>
-                    <li>라운딩 후 즐기는 시원한 마사지</li>
-                    <li>겨울철에도 따뜻하게 칠 수 있어요.</li>
-                </ul>
-            </div>
+            <h2>🇹🇭 태국의 매력 (휴양+골프)</h2>
+            <p>1년 내내 따뜻한 날씨와 저렴한 물가가 장점!</p>
+            <ul>
+                <li><strong>비행시간:</strong> 약 5~6시간 (방콕/치앙마이)</li>
+                <li><strong>장점:</strong> 라운딩 후 1일 1마사지 가능! 캐디 1인 1캐디 시스템으로 황제 골프.</li>
+                <li><strong>추천대상:</strong> 골프도 치고 수영장 휴양도 즐기고 싶은 부부.</li>
+            </ul>
         </div>
 
-        <!-- 카드 2: 일본 -->
+        <!-- 카드 2: 일본 매력 -->
         <div class="card">
-            <h2>🇯🇵 일본 골프 여행</h2>
-            <p>가깝고 편리한 비행 거리, 깨끗한 시설!</p>
-            <button class="btn" onclick="toggleDetails(this)">자세히 보기 ⬇️</button>
-            <div class="details">
-                <ul>
-                    <li>비행 시간이 짧아 피로가 적어요.</li>
-                    <li>라운딩 후 따뜻한 온천욕 가능</li>
-                    <li>맛있는 일식과 깔끔한 서비스</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 카드 3: 비행시간 -->
-        <div class="card">
-            <h2>✈️ 비행 5시간 이내 코스</h2>
-            <p>신랑도 나도 지치지 않는 완벽한 거리!</p>
-            <button class="btn" onclick="toggleDetails(this)">자세히 보기 ⬇️</button>
-            <div class="details">
-                <ul>
-                    <li>이동 시간이 짧아 첫날부터 골프 가능!</li>
-                    <li>주말을 껴서 다녀오기 좋습니다.</li>
-                    <li>시차 적응이 필요 없어 몸이 가벼워요.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 카드 4: 여행 일정 팁 (가로 전체 차지) -->
-        <div class="card full-width tip-card">
-            <h2>📝 누구나 따라 하기 쉬운 일정표 팁</h2>
-            <p>너무 빡빡한 일정은 피하고 휴식을 챙기세요!</p>
-            <button class="btn" onclick="toggleDetails(this)">일정표 예시 보기 ⬇️</button>
-            <div class="details">
-                <ul>
-                    <li><strong>1일차:</strong> 도착 및 체크인 -> 가벼운 식사 후 휴식</li>
-                    <li><strong>2일차:</strong> 오전 상쾌한 18홀 라운딩 -> 오후 현지 관광 및 맛집 탐방</li>
-                    <li><strong>3일차:</strong> 오전 18홀 라운딩 -> 마사지/온천으로 피로 풀기</li>
-                    <li><strong>4일차:</strong> 여유롭게 조식 후 공항으로 이동 및 귀국</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<script>
-    // 1. 검색 기능 스크립트
-    function filterCards() {
-        const query = document.getElementById("searchInput").value.toLowerCase();
-        const cards = document.querySelectorAll(".card");
-
-        cards.forEach(card => {
-            const text = card.innerText.toLowerCase();
-            // 검색어가 포함되어 있으면 보이고, 없으면 숨깁니다.
-            if (text.includes(query)) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        });
-    }
-
-    // 2. 버튼 (내용 펼치기/접기) 기능 스크립트
-    function toggleDetails(btn) {
-        // 버튼 바로 다음에 있는 details 요소 찾기
-        const details = btn.nextElementSibling;
-        
-        if (details.style.display === "block") {
-            // 열려있으면 닫기
-            details.style.display = "none";
-            btn.innerText = "자세히 보기 ⬇️";
-        } else {
-            // 닫혀있으면 열기
-            details.style.display = "block";
-            btn.innerText = "내용 접기 ⬆️";
-        }
-    }
-</script>
-
-</body>
-</html>
+            <h2>🇯🇵 일본의 매력 (미
